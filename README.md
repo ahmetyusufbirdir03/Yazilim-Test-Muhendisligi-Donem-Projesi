@@ -49,7 +49,7 @@ Bu proje, **Yazılım Test Mühendisliği** dersi kapsamında hazırlanmış bir
 ## Proje Yapısı
 
 ```
-rest-assured-regression/
+main/
 ├── pom.xml                          # Maven bağımlılıkları
 └── src/
     └── test/
