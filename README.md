@@ -54,7 +54,7 @@ main/
 └── src/
     └── test/
         └── java/
-            └── com/testproject/
+            └── testproject/
                 ├── base/
                 │   └── BaseTest.java        # Ortak Rest Assured ayarları
                 ├── config/
