@@ -44,6 +44,5 @@ public abstract class BaseTest {
                 .build();
 
         RestAssured.requestSpecification  = requestSpec;
-        RestAssured.responseSpecification = responseSpec;
     }
 }

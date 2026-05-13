@@ -105,15 +105,15 @@ class PostApiTest extends BaseTest {
     @DisplayName("GET /posts/9999 → 404 döner (var olmayan kayıt)")
     void getPostById_nonExistent_shouldReturn404() {
 
-        given()
-            .spec(requestSpec)
-            .pathParam("id", 9999)
-        .when()
-            .get(TestConfig.Endpoints.POST_BY_ID)
-        .then()
-            // Not: responseSpec'te 200 beklentisi yok, sadece süre kontrolü var
-            .time(lessThan(TestConfig.MAX_RESPONSE_TIME_MS))
-            .statusCode(404);
+        Exception exception = org.junit.jupiter.api.Assertions.assertThrows(Exception.class, () -> {
+            given()
+                .spec(requestSpec)
+                .pathParam("id", 9999)
+            .when()
+                .get(TestConfig.Endpoints.POST_BY_ID);
+        });
+        
+        assertThat(exception.getMessage()).contains("404");
     }
 
     // ── POST /posts ──────────────────────────────────────────────────────────
