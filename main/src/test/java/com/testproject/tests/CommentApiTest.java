@@ -16,11 +16,6 @@ import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.*;
 
-/**
- * /comments endpoint'i için regresyon testleri.
- *
- * <p>Query parametre kullanımı ve veri filtreleme senaryoları içerir.</p>
- */
 @DisplayName("Comment API Testleri")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CommentApiTest extends BaseTest {

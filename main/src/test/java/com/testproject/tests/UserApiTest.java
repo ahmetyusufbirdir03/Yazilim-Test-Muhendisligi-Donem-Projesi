@@ -16,17 +16,6 @@ import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.*;
 
-/**
- * /users endpoint'i için regresyon testleri.
- *
- * <p>Kapsanan senaryolar:</p>
- * <ul>
- *   <li>Tüm kullanıcıların listelenmesi ve alanların doğrulanması</li>
- *   <li>Tekil kullanıcı getirilmesi ve iç içe nesne doğrulama</li>
- *   <li>Email formatının doğrulanması</li>
- *   <li>Tüm kullanıcıların benzersiz email'e sahip olduğunun kontrolü</li>
- * </ul>
- */
 @DisplayName("User API Testleri")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class UserApiTest extends BaseTest {

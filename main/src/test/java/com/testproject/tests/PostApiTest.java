@@ -110,7 +110,9 @@ class PostApiTest extends BaseTest {
                 .spec(requestSpec)
                 .pathParam("id", 9999)
             .when()
-                .get(TestConfig.Endpoints.POST_BY_ID);
+                .get(TestConfig.Endpoints.POST_BY_ID)
+            .then()
+                .statusCode(404);
         });
         
         assertThat(exception.getMessage()).contains("404");

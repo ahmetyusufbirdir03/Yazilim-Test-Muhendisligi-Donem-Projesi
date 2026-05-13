@@ -1,13 +1,8 @@
 package com.testproject.config;
 
-/**
- * Test konfigürasyon sabitleri.
- * Tüm URL ve zaman aşımı değerleri tek bir yerden yönetilir.
- */
 public final class TestConfig {
 
     private TestConfig() {
-        // Utility class - instantiation engellenir
     }
 
     /** Test edilen API'nin base URL'i */
