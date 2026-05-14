@@ -70,4 +70,73 @@ class GetTests extends BaseTest {
         int toplamTodo = response.jsonPath().getList("$").size();
         assert toplamTodo > 0 : "Todo listesi boş olmamalı";
     }
+
+    // TEST 4 — Posta Ait Yorumları Getir
+    @Test
+    @DisplayName("GET /posts/1/comments")
+    void getPostComments_shouldReturnCommentsForPost1() {
+        given()
+            .spec(requestSpec)
+        .when()
+            .get("/posts/1/comments")
+        .then()
+            // 1) Status code kontrolü
+            .statusCode(200)
+
+            // 2) Yanıt süresi kontrolü
+            .time(lessThan(MAX_RESPONSE_TIME_MS))
+
+            // 3) Response body değer kontrolleri
+            .body("", not(empty()))
+            .body("postId", everyItem(equalTo(1)))
+            .body("email", everyItem(containsString("@")));
+    }
+
+    // TEST 5 — Belirli Bir Kullanıcıyı Getir
+    @Test
+    @DisplayName("GET /users/1")
+    void getSingleUser_shouldReturnUser1() {
+        given()
+            .spec(requestSpec)
+        .when()
+            .get("/users/1")
+        .then()
+            .statusCode(200) // Status code kontrolü
+            .time(lessThan(MAX_RESPONSE_TIME_MS)) // Yanıt süresi kontrolü
+            .body("id", equalTo(1)) // Response body değer kontrolleri
+            .body("name", not(emptyOrNullString()))
+            .body("email", not(emptyOrNullString()));
+    }
+
+    // TEST 6 — Albüme Ait Fotoğrafları Getir
+    @Test
+    @DisplayName("GET /albums/1/photos")
+    void getAlbumPhotos_shouldReturnPhotosForAlbum1() {
+        given()
+            .spec(requestSpec)
+        .when()
+            .get("/albums/1/photos")
+        .then()
+            .statusCode(200) // Status code kontrolü
+            .time(lessThan(MAX_RESPONSE_TIME_MS)) // Yanıt süresi kontrolü
+            .body("", not(empty())) // Response body değer kontrolleri
+            .body("albumId", everyItem(equalTo(1)))
+            .body("url", everyItem(startsWith("http")));
+    }
+
+    // TEST 7 — Query Parametresi İle Post Arama
+    @Test
+    @DisplayName("GET /posts?userId=1")
+    void getPostsByUserId_shouldReturnPostsForUser1() {
+        given()
+            .spec(requestSpec)
+            .queryParam("userId", 1)
+        .when()
+            .get("/posts")
+        .then()
+            .statusCode(200) // Status code kontrolü
+            .time(lessThan(MAX_RESPONSE_TIME_MS)) // Yanıt süresi kontrolü
+            .body("", not(empty())) // Response body değer kontrolleri
+            .body("userId", everyItem(equalTo(1)));
+    }
 }

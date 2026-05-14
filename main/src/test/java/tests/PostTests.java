@@ -97,4 +97,98 @@ class PostTests extends BaseTest {
             .body("completed", equalTo(false))  
             .body("userId",    equalTo(5));
     }
+
+    // TEST 4 — Yeni Kullanıcı Oluşturma
+    @Test
+    @DisplayName("POST /users → New user - 201")
+    void createUser_shouldReturn201WithCreatedUser() {
+
+        Map<String, Object> newUser = new HashMap<>();
+        newUser.put("name", "Test User");
+        newUser.put("username", "testuser");
+        newUser.put("email", "testuser@example.com");
+
+        given()
+            .spec(requestSpec)
+            .body(newUser)
+        .when()
+            .post("/users")
+        .then()
+            // 1) Status code kontrolü
+            .statusCode(201)
+
+            // 2) Yanıt süresi kontrolü
+            .time(lessThan(MAX_RESPONSE_TIME_MS))
+
+            // 3) Response body değer kontrolleri
+            .body("id", notNullValue())
+            .body("name", equalTo("Test User"))
+            .body("email", equalTo("testuser@example.com"));
+    }
+
+    // TEST 5 — Yeni Albüm Oluşturma
+    @Test
+    @DisplayName("POST /albums → New album - 201")
+    void createAlbum_shouldReturn201WithCreatedAlbum() {
+
+        Map<String, Object> newAlbum = new HashMap<>();
+        newAlbum.put("userId", 1);
+        newAlbum.put("title", "My Test Album");
+
+        given()
+            .spec(requestSpec)
+            .body(newAlbum)
+        .when()
+            .post("/albums")
+        .then()
+            .statusCode(201) // Status code kontrolü
+            .time(lessThan(MAX_RESPONSE_TIME_MS)) // Yanıt süresi kontrolü
+            .body("id", notNullValue()) // Response body değer kontrolleri
+            .body("userId", equalTo(1))
+            .body("title", equalTo("My Test Album"));
+    }
+
+    // TEST 6 — Yeni Fotoğraf Oluşturma
+    @Test
+    @DisplayName("POST /photos → New photo - 201")
+    void createPhoto_shouldReturn201WithCreatedPhoto() {
+
+        Map<String, Object> newPhoto = new HashMap<>();
+        newPhoto.put("albumId", 1);
+        newPhoto.put("title", "Test Photo");
+        newPhoto.put("url", "https://via.placeholder.com/600/92c952");
+        newPhoto.put("thumbnailUrl", "https://via.placeholder.com/150/92c952");
+
+        given()
+            .spec(requestSpec)
+            .body(newPhoto)
+        .when()
+            .post("/photos")
+        .then()
+            .statusCode(201) // Status code kontrolü
+            .time(lessThan(MAX_RESPONSE_TIME_MS)) // Yanıt süresi kontrolü
+            .body("id", notNullValue()) // Response body değer kontrolleri
+            .body("albumId", equalTo(1))
+            .body("title", equalTo("Test Photo"));
+    }
+
+    // TEST 7 — String Body İle Gönderi Oluşturma
+    @Test
+    @DisplayName("POST /posts → String body - 201")
+    void createPostWithStringBody_shouldReturn201() {
+
+        String jsonBody = "{ \"title\": \"foo\", \"body\": \"bar\", \"userId\": 1 }";
+
+        given()
+            .spec(requestSpec)
+            .body(jsonBody)
+        .when()
+            .post("/posts")
+        .then()
+            .statusCode(201) // Status code kontrolü
+            .time(lessThan(MAX_RESPONSE_TIME_MS)) // Yanıt süresi kontrolü
+            .body("id", notNullValue()) // Response body değer kontrolleri
+            .body("title", equalTo("foo"))
+            .body("body", equalTo("bar"));
+    }
 }
