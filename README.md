@@ -26,8 +26,8 @@ main/
         └── java/
             └── tests/
                 ├── BaseTest.java      # Ortak yapılandırma
-                ├── GetTests.java      # 3 GET testi
-                └── PostTests.java     # 3 POST testi
+                ├── GetTests.java      # 7 GET testi
+                └── PostTests.java     # 7 POST testi
 ```
 
 ## ✅ Test Listesi
@@ -38,6 +38,10 @@ main/
 | 1 | `GET /posts/1` | Tekil gönderi id, userId, title, body kontrolü |
 | 2 | `GET /posts` | Listenin 100 eleman içerdiği; ilk ve son id kontrolü |
 | 3 | `GET /users/1/todos` | userId=1 olan todo'lar; tamamlananların varlığı |
+| 4 | `GET /posts/1/comments` | Posta ait yorumlar; postId ve email formatı kontrolü |
+| 5 | `GET /users/1` | Belirli kullanıcı id, name, email kontrolü |
+| 6 | `GET /albums/1/photos` | Albüme ait fotoğraflar; albumId ve url formatı kontrolü |
+| 7 | `GET /posts?userId=1` | Query parametresi ile arama; userId eşleşmesi |
 
 ### POST Testleri (`PostTests.java`)
 | # | Endpoint | Ne test edilir? |
@@ -45,6 +49,10 @@ main/
 | 1 | `POST /posts` | 201 dönüşü; title, body, userId eşleşmesi |
 | 2 | `POST /comments` | 201 dönüşü; postId, email, name kontrolü + id > 0 |
 | 3 | `POST /todos` | 201 dönüşü; completed=false; userId eşleşmesi |
+| 4 | `POST /users` | 201 dönüşü; name, email eşleşmesi |
+| 5 | `POST /albums` | 201 dönüşü; userId, title eşleşmesi |
+| 6 | `POST /photos` | 201 dönüşü; albumId, title eşleşmesi |
+| 7 | `POST /posts` | 201 dönüşü; string (JSON) payload ile gönderi oluşturma |
 
 ### Her testte uygulanan 3 temel kontrol
 - ✔️ **Status code** doğrulaması
