@@ -9,7 +9,7 @@ Yazılım Test Mühendisliği ödevi kapsamında hazırlanmış otomatik API reg
 | Java | 11+ | Programlama dili |
 | Maven | 3.8+ | Proje yönetimi & bağımlılıklar |
 | Rest Assured | 5.4.0 | API test kütüphanesi |
-| JUnit 5 | 5.10.2 | Test çatısı |
+| JUnit 5 | 5.10.2 | Test kapsayıcısı |
 | Hamcrest | 2.2 | Assertion kütüphanesi |
 
 ## 🎯 Test Hedefi
