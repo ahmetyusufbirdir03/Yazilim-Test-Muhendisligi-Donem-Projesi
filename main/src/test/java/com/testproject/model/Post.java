@@ -2,12 +2,6 @@ package com.testproject.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-/**
- * JSONPlaceholder /posts endpoint'ine karşılık gelen veri modeli.
- *
- * <p>{@code @JsonIgnoreProperties(ignoreUnknown = true)} sayesinde
- * API yanıtında tanımlamadığımız alanlar sessizce yoksayılır.</p>
- */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Post {
 

@@ -28,16 +28,16 @@ public abstract class BaseTest {
     @BeforeAll
     static void setupRestAssured() {
 
-        // İstek şartnamesi: tüm testlerde ortak olan header ve ayarlar
+        // tüm testlerde ortak olan header ve ayarlar
         requestSpec = new RequestSpecBuilder()
                 .setBaseUri(TestConfig.BASE_URL)
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
-                .addFilter(new RequestLoggingFilter())   // her isteği logla
-                .addFilter(new ResponseLoggingFilter())  // her yanıtı logla
+                .addFilter(new RequestLoggingFilter())   // istek logları
+                .addFilter(new ResponseLoggingFilter())  // yanıt logları
                 .build();
 
-        // Yanıt şartnamesi: tüm testlerde ortak beklentiler
+        // tüm testlerde ortak beklentiler
         responseSpec = new ResponseSpecBuilder()
                 .expectContentType(ContentType.JSON)
                 .expectResponseTime(lessThan(TestConfig.MAX_RESPONSE_TIME_MS))
