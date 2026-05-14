@@ -19,7 +19,7 @@ Yazılım Test Mühendisliği ödevi kapsamında hazırlanmış otomatik API reg
 ## 📁 Proje Yapısı
 
 ```
-rest-assured-regression/
+main/
 ├── pom.xml
 └── src/
     └── test/
