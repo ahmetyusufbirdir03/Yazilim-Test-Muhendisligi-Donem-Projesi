@@ -11,27 +11,22 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>REST API Regresyon Test Projesi</name>
-    <description>
-        JSONPlaceholder API için Rest Assured ile yazılmış otomatik regresyon testleri.
-    </description>
+    <name>REST Assured Regression Tests</name>
+    <description>Yazılım Test Mühendisliği - JSONPlaceholder API Otomatik Regresyon Testleri</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <!-- Versiyon sabitleri -->
+        <!-- Bağımlılık versiyonları -->
         <rest-assured.version>5.4.0</rest-assured.version>
         <junit.version>5.10.2</junit.version>
-        <jackson.version>2.17.0</jackson.version>
-        <assertj.version>3.25.3</assertj.version>
-        <surefire.version>3.2.5</surefire.version>
+        <hamcrest.version>2.2</hamcrest.version>
     </properties>
 
     <dependencies>
 
-        <!-- Rest Assured - API test kütüphanesi -->
+        <!-- Rest Assured - API testi için ana kütüphane -->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
@@ -39,10 +34,10 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JSON şema doğrulama için -->
+        <!-- JSON path desteği -->
         <dependency>
             <groupId>io.rest-assured</groupId>
-            <artifactId>json-schema-validator</artifactId>
+            <artifactId>json-path</artifactId>
             <version>${rest-assured.version}</version>
             <scope>test</scope>
         </dependency>
@@ -60,49 +55,34 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Hamcrest matcher kütüphanesi -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
-            <version>${junit.version}</version>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+            <version>${hamcrest.version}</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- JSON serileştirme/deserileştirme -->
+        <!-- Jackson Databind - JSON Serialization/Deserialization için -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- AssertJ - daha okunaklı assertion'lar için -->
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>${assertj.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- Lombok - boilerplate kod azaltmak için -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.32</version>
-            <scope>provided</scope>
+            <version>2.16.1</version>
         </dependency>
 
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Surefire - JUnit 5 çalıştırmak için -->
+            <!-- Maven Surefire - JUnit 5 test çalıştırıcı -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${surefire.version}</version>
+                <version>3.2.5</version>
                 <configuration>
                     <includes>
-                        <include>**/*Test.java</include>
+                        <include>**/*Tests.java</include>
                     </includes>
                 </configuration>
             </plugin>

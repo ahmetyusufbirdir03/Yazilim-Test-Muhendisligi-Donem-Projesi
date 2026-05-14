@@ -1,7 +1,3 @@
-com\testproject\tests\PostApiTest.class
-com\testproject\base\BaseTest.class
-com\testproject\tests\CommentApiTest.class
-com\testproject\config\TestConfig$Endpoints.class
-com\testproject\model\Post.class
-com\testproject\config\TestConfig.class
-com\testproject\tests\UserApiTest.class
+tests\PostTests.class
+tests\BaseTest.class
+tests\GetTests.class
